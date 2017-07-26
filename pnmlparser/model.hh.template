@@ -1,0 +1,31 @@
+#pragma once
+
+#include <array>
+{% if pn.is_one_safe %}
+#include <bitset>
+{% endif %}
+
+#include "corocheck.hh"
+
+
+using marking_type    = {% if pn.is_one_safe %}
+std::bitset<{{ pn.place_count }}>;
+{% else %}
+std::array<std::size_t, {{ pn.place_count }}>;
+{% endif %}
+using transition_type = petrinet::transition<{{ pn.place_count }}, marking_type>;
+
+auto transitions = {
+    {% for t in pn.transitions %}
+    transition_type(
+        { {{ t.pre |join(', ') }} },
+        { {{ t.post|join(', ') }} }),
+    {% endfor %}
+};
+
+
+auto initial_marking = {% if pn.is_one_safe %}
+marking_type("{{ pn.initial_marking|reverse|join('') }}");
+{% else %}
+marking_type({ {{ pn.initial_marking|join(', ') }} });
+{% endif %}

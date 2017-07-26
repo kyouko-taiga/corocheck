@@ -14,7 +14,7 @@ namespace petrinet {
         arc_type post;
 
         transition(const arc_type& pre, const arc_type& post)
-        : pre(pre), post(post) {}
+            : pre(pre), post(post) {}
         transition(const transition<place_count, M>& other) = default;
         transition(transition<place_count, M>&& other)      = default;
 

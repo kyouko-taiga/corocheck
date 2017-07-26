@@ -1,36 +1,23 @@
-#include <array>
-#include <bitset>
 #include <chrono>
 #include <iostream>
 #include <unordered_set>
 #include <vector>
 
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/serialization/array.hpp>
+//#include <boost/archive/text_oarchive.hpp>
+//#include <boost/serialization/array.hpp>
 
 #include "corocheck.hh"
-
-
-// using marking_type    = std::bitset<2>;
-using marking_type    = std::array<std::size_t, 2>;
-using transition_type = petrinet::transition<2, marking_type>;
+#include "model.hh"
 
 
 int main() {
 
-    auto transitions = {
-        transition_type({1, 0}, {0, 1}),
-        transition_type({0, 1}, {1, 0})
-    };
+    auto seen       = std::unordered_set<marking_type>({initial_marking});
+    auto to_process = std::vector<marking_type>({initial_marking});
 
-    // auto initial_marking = marking_type(1);
-    auto initial_marking = marking_type({15, 0});
-    auto seen            = std::unordered_set<marking_type>({initial_marking});
-    auto to_process      = std::vector<marking_type>({initial_marking});
-
-    boost::archive::text_oarchive archive(std::cout);
-    archive << initial_marking;
-    std::cout << std::endl;
+//    boost::archive::text_oarchive archive(std::cout);
+//    archive << initial_marking;
+//    std::cout << std::endl;
 
     auto begin = std::chrono::high_resolution_clock::now();
 
