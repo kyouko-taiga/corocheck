@@ -3,7 +3,7 @@
 #include <array>
 
 
-namespace petrinet {
+namespace corocheck {
 
     template<std::size_t place_count, typename M>
     struct transition {
@@ -45,5 +45,5 @@ namespace std {
             return result;
         }
     };
-    
+
 }

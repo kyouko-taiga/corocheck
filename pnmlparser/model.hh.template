@@ -1,19 +1,24 @@
 #pragma once
 
-#include <array>
 {% if pn.is_one_safe %}
 #include <bitset>
+{% else %}
+#include <array>
 {% endif %}
 
 #include "corocheck.hh"
 
+
+namespace corocheck {
+
+constexpr auto place_count = {{ pn.place_count }};
 
 using marking_type    = {% if pn.is_one_safe %}
 std::bitset<{{ pn.place_count }}>;
 {% else %}
 std::array<std::size_t, {{ pn.place_count }}>;
 {% endif %}
-using transition_type = petrinet::transition<{{ pn.place_count }}, marking_type>;
+using transition_type = transition<{{ pn.place_count }}, marking_type>;
 
 auto transitions = {
     {% for t in pn.transitions %}
@@ -23,9 +28,10 @@ auto transitions = {
     {% endfor %}
 };
 
-
 auto initial_marking = {% if pn.is_one_safe %}
 marking_type("{{ pn.initial_marking|reverse|join('') }}");
 {% else %}
 marking_type({ {{ pn.initial_marking|join(', ') }} });
 {% endif %}
+
+}

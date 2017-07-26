@@ -23,6 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		759201681F28F6F1002F2C80 /* dd.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = dd.hh; sourceTree = "<group>"; };
+		759201691F28F889002F2C80 /* model.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = model.hh; sourceTree = "<group>"; };
 		75B617691F28C81300BF3552 /* corocheck */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = corocheck; sourceTree = BUILT_PRODUCTS_DIR; };
 		75B6176C1F28C81300BF3552 /* main.cc */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cc; sourceTree = "<group>"; };
 		75B617731F28C83E00BF3552 /* corocheck.hh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = corocheck.hh; sourceTree = "<group>"; };
@@ -60,6 +62,8 @@
 			children = (
 				75B6176C1F28C81300BF3552 /* main.cc */,
 				75B617731F28C83E00BF3552 /* corocheck.hh */,
+				759201681F28F6F1002F2C80 /* dd.hh */,
+				759201691F28F889002F2C80 /* model.hh */,
 			);
 			path = corocheck;
 			sourceTree = "<group>";
@@ -220,9 +224,13 @@
 		75B617711F28C81300BF3552 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				HEADER_SEARCH_PATHS = /usr/local/include/;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib/;
-				OTHER_LDFLAGS = "-lboost_serialization";
+				OTHER_LDFLAGS = (
+					"-lboost_serialization",
+					"-lboost_system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -230,9 +238,13 @@
 		75B617721F28C81300BF3552 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				HEADER_SEARCH_PATHS = /usr/local/include/;
 				LIBRARY_SEARCH_PATHS = /usr/local/lib/;
-				OTHER_LDFLAGS = "-lboost_serialization";
+				OTHER_LDFLAGS = (
+					"-lboost_serialization",
+					"-lboost_system",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -256,6 +268,7 @@
 				75B617721F28C81300BF3552 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
